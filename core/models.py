@@ -48,7 +48,7 @@ class Person(models.Model):
 
     @property
     def salary(self):
-        return Salary.objects.filter(person=self, active_from__lte=datetime.now).latest('active_from')
+        return Salary.objects.filter(person=self, active_from__lte=datetime.now).order_by('-active_from').last()
 
     @property
     def full_name(self):
@@ -73,7 +73,7 @@ class Salary(models.Model):
             return self.filter(active_from__lte=datetime.now).latest()
 
     def __unicode__(self):
-        return self.amount
+        return unicode(self.amount)
 
     def get_absolute_url(self):
         return reverse('core:person', kwargs={'pk': self.person.pk})
