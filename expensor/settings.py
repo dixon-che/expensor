@@ -16,6 +16,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'expensor.db',
+        'ATOMIC_REQUESTS': True,
         # 'USER': 'vagrant',
         # 'PASSWORD': '',
         # 'HOST': '192.168.33.10',
@@ -144,7 +145,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     # Third party:
-    'south',
+    # 'south',
     'debug_toolbar',
     'annoying',
     # My apps:
@@ -193,3 +194,9 @@ LOGGING = {
         },
     }
 }
+
+
+try:
+    from expensor.local_settings import *
+except Exception as e:
+    print '\033[93mWARNING: ', e.message, '\033[0m'

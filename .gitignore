@@ -4,6 +4,7 @@
 # ignoring sublime extension settings
 .codeintel
 .idea
+local_settings.*
 # ignoring collected static files
 expensor/static/
 

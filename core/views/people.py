@@ -24,7 +24,7 @@ class PersonDetailView(DetailView):
         context = super(PersonDetailView, self).get_context_data(**kwargs)
         context['salary_form'] = SalaryForm(initial={'person': person})
         context['payment_form'] = PaymentForm(initial={'currency': Currency.default(),
-                                                       'amount_src': person.salary.amount})
+                                                       'amount_src': person.salary.amount if person.salary else ''})
         return context
 
 
